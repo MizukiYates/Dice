@@ -16,7 +16,7 @@
   {
       background(200);
       int total = 0;
-      for (int y = 100; y <= 150; y += 50)
+      for (int y = 100; y <= 200; y += 50)
       {
         for (int x = 150; x <= 250; x += 50)
         {
