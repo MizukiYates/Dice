@@ -4,8 +4,9 @@
   {
       noLoop();
       size(400,300);
-      aDice = new Die(150, 100);
-      bDice = new Die(200,100);
+      textAlign(CENTER, CENTER);
+      aDice = new Die (150, 100);
+      bDice = new Die (200,100);
       cDice = new Die (250,100);
       dDice = new Die (150,150);
       eDice = new Die (200,150);
@@ -13,33 +14,55 @@
   }
   void draw()
   {
-      aDice.show();
-      bDice.show();
-      cDice.show();
-      dDice.show();
-      eDice.show();
-      fDice.show();
+      background(200);
+      int total = 0;
+      for (int y = 100; y <= 150; y += 50)
+      {
+        for (int x = 150; x <= 250; x += 50)
+        {
+          Die aDice = new Die(x,y);
+          aDice.show();
+          if (aDice.numInt == 1)
+          {
+          total = total++;
+          }
+          else if (aDice.numInt == 2)
+          {
+            total = total + 2;
+          }
+          else if (aDice.numInt == 3)
+          {
+            total = total + 3;
+          }
+          else if (aDice.numInt == 4)
+          {
+            total = total + 4;
+          }
+          else if (aDice.numInt == 5)
+          {
+            total = total + 5;
+          }
+          else if (aDice.numInt == 6)
+          {
+            total = total + 6;
+          }
+        }
+      }
+      fill (0,0,0);
+       text ("total roll = " + total, 50, 50);
+      
+      
   }
   void mousePressed()
   {
-     //redraw();
+      redraw();
       aDice.roll();
-      bDice.roll();
-      cDice.roll();
-      dDice.roll();
-      eDice.roll();
-      fDice.roll();
+      
   }
   class Die //models one single dice cube
   {
       //member variable declarations here
-      int myX, myY;
-      boolean one;
-      boolean two;
-      boolean three;
-      boolean four;
-      boolean five;
-      boolean six;
+      int myX, myY, numInt;
       
       
       Die(int x, int y) //constructor
@@ -50,62 +73,37 @@
       }
       void roll()
       {
-        double num = Math.random()*6 + 1;
-        int numInt = (int)num;
-          if (numInt == 1)
-          {
-            one = true;
-          }
-          if (numInt == 2)
-          {
-            two = true;
-          }
-          if (numInt == 3)
-          {
-            three = true;
-          }
-          if (numInt == 4)
-          {
-            four = true;
-          }
-          if (numInt == 5)
-          {
-            five = true;
-          }
-          if (numInt == 6)
-          {
-            six = true;
-          }
+         numInt = (int) (Math.random()*6) + 1;
       }
   void show()
   {
     fill(255,255,255);
     square(myX,myY,40);
     fill(255,255,255);
-  {
-    if(one) {
+  
+    if(numInt == 1) {
       fill(0);
       ellipse(myX + 20 , myY + 20 , 7, 7);
     }
-    if(two) {
+    else if(numInt == 2) {
       fill(0);
       ellipse(myX + 10, myY + 20, 7, 7);
       ellipse(myX + 30, myY + 20, 7, 7);
     }
-    if(three) {
+    else if(numInt == 3) {
       fill(0);
       ellipse(myX + 10, myY + 30, 7, 7);
       ellipse(myX +20, myY + 10, 7 , 7);
       ellipse(myX + 30, myY + 30, 7, 7);
     }
-   if(four) {
+   else if(numInt == 4) {
      fill(0);
      ellipse(myX + 10, myY + 10, 7 , 7);
      ellipse(myX + 10, myY + 30, 7 , 7);
      ellipse(myX + 30, myY + 10, 7 , 7);
      ellipse(myX + 30, myY + 30, 7, 7);
   }
-  if(five) {
+  else if(numInt == 5) {
     fill(0);
     ellipse(myX + 10, myY + 10, 7 , 7);
     ellipse(myX + 10, myY + 30, 7 , 7);
@@ -113,7 +111,7 @@
     ellipse(myX + 30, myY + 30, 7 , 7);
     ellipse(myX + 20, myY + 20, 7 , 7);
   }
-  if(six) {
+  else if(numInt == 6) {
     fill(0);
     ellipse(myX + 9, myY + 10, 7 , 7);
     ellipse(myX + 9, myY + 30, 7 , 7);
@@ -121,7 +119,6 @@
     ellipse(myX + 31, myY + 30, 7 , 7);
     ellipse(myX + 20, myY + 10, 7 , 7);
     ellipse(myX + 20, myY + 30, 7 , 7);
-        }
-      }
+        }      
     }
   }
